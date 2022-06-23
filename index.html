@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--        <link rel="stylesheet" href="main.css">-->
+        <style>
+            html {
+                background: #e6e9e9;
+                background-image: linear-gradient(270deg, rgb(230, 233, 233) 0%, rgb(216, 221, 221) 100%);
+                -webkit-font-smoothing: antialiased;
+            }
+
+            body {
+                background: #fff;
+                box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
+                color: #545454;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                font-size: 16px;
+                line-height: 1.5;
+                margin: 0 auto;
+                max-width: 800px;
+                padding: 2em 2em 4em;
+            }
+
+            input[type=text], input[type=email], select, textarea {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+            label {
+                font-size: 12px;
+                font-style: italic;
+                font-size: 10;
+            }
+            h2 {
+                margin-top: 1.3em;
+            }
+            button{
+                width: 100%;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+            button[id = "submit_song"]{
+                background-color: #4267B2;
+            }
+            button[id = "clear_screen"] {
+                background-color: #ff6961;
+            }
+
+            /* Add a background color to the submit button on mouse-over */
+            input[type=submit]:hover {
+                background-color: #45a049;
+            }
+            a {
+                color: #0083e8;
+            }
+
+            b, strong {
+                font-weight: 600;
+            }
+
+            samp {
+                display: none;
+            }
+
+            @keyframes colorize {
+                0% {
+                    -webkit-filter: grayscale(100%);
+                    filter: grayscale(100%);
+                }
+                100% {
+                    -webkit-filter: grayscale(0%);
+                    filter: grayscale(0%);
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>Gita Yaung Sone</h2>
+        <form>
+            <label for="title">Song Title</label>
+            <input type="text" id="title" name="title" placeholder="song title">
+
+            <label for="artist">Artist / Singer</label>
+            <input type="text" id="artist" name="artist" placeholder="singer/band name">
+
+            <label for="album">Album</label>
+            <input type="text" id="album" name="album" placeholder="album">
+
+            <label for="composer">Composer</label>
+            <input type ="text" id="composer" name="composer" placeholder="composer">
+
+            <label for="genre">Genre</label>
+            <input type ="text" id="genre" name="genre" placeholder="genre" value="Other">
+
+            <label for="key">Chose a Key</label>
+            <select id="key" name="key">
+                <option value="A">A</option>
+                <option value="A#/Bb">A#/Bb</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="C#/Db">C#/Db</option>
+                <option value="D">D</option>
+                <option value="D#/Eb">D#/Eb</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+                <option value="F#/Gb">F#/Gb</option>
+                <option value="G">G</option>
+                <option value="G#/Ab">G#/Ab</option>
+            </select>
+
+            <textarea id="rawText" name="rawText" placeholder="type chords and texts in .chopro format ..." style="height:500px"></textarea>
+
+            <button id="submit_song" type="button">Upload Song</button>
+        </form>
+        <button id="clear_screen" type="button">Reset</button>
+    </body>
+    <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-firestore.js"></script>
+    <script type="text/javascript">
+        (function() {
+            const firebaseConfig = {
+                apiKey: "AIzaSyDuGBoGn4Eb5V0nmJObTzznWNXld_y1_Ss",
+                authDomain: "main-373ae.firebaseapp.com",
+                projectId: "main-373ae",
+                storageBucket: "main-373ae.appspot.com",
+                messagingSenderId: "917088618177",
+                appId: "1:917088618177:web:1236ef9b99520c0f2b3640",
+                measurementId: "G-WSZZSJLX4F"
+            };
+
+            firebase.initializeApp(firebaseConfig);
+        })();
+    </script>
+
+    <script type="text/javascript">
+        (function() {
+            let uuid = function() {
+                var dt = new Date().getTime();
+                var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                    var r = (dt + Math.random()*16)%16 | 0;
+                    dt = Math.floor(dt/16);
+                    return (c=='x' ? r :(r&0x3|0x8)).toString(16);
+                });
+                return uuid;
+            }
+            let push_to_firebase = function(){
+                let data = {
+                    "title": document.getElementById("title").value,
+                    "artist": document.getElementById("artist").value,
+                    "artists": [document.getElementById("artist").value],
+                    "album": document.getElementById("album").value,
+                    "composer": document.getElementById("composer").value,
+                    "genre": document.getElementById("genre").value,
+                    "key": document.getElementById("key").value,
+                    "id": uuid(),
+                    "rawText": document.getElementById("rawText").value,
+                }
+
+                firebase.firestore().collection("songs").add({
+                    id: data["id"],
+                    title: data["title"],
+                    artist: data["artist"],
+                    artists:data["artists"],
+                    album: data["album"],
+                    composer: data["composer"],
+                    genre: data["genre"],
+                    key: data["key"],
+                    created: firebase.firestore.Timestamp.fromDate(new Date()),
+                    mediaLink: "",
+                    tempo: "",
+                    createrID: "admin",
+                    rawText: data["rawText"],
+                    popularity: 0,
+                }).then(function(docRef) {
+                    console.log("Message sent, ID: ", docRef.id);
+                    //                    location.reload();
+                    alert("Thanks for sending a message. I'll try and get back to you as soon as possible.")
+                }).catch(function(error) {
+                    console.error("Message could not be sent: ", error);
+                });
+            }
+
+            document.getElementById("submit_song").addEventListener("click", push_to_firebase);
+            let clearScreen = function() {
+                location.reload();
+            }
+            document.getElementById("clear_screen").addEventListener("click", clearScreen);
+        })();
+
+    </script>
+</html>
