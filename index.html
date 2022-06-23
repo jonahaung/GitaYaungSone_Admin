@@ -1,109 +1,75 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--        <link rel="stylesheet" href="main.css">-->
-        <style>
-            html {
-                background: #e6e9e9;
-                background-image: linear-gradient(270deg, rgb(230, 233, 233) 0%, rgb(216, 221, 221) 100%);
-                -webkit-font-smoothing: antialiased;
-            }
-
-            body {
-                background: #fff;
-                box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
-                color: #545454;
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-                font-size: 16px;
-                line-height: 1.5;
-                margin: 0 auto;
-                max-width: 800px;
-                padding: 2em 2em 4em;
-            }
-
-            input[type=text], input[type=email], select, textarea {
-                width: 100%;
-                padding: 12px 20px;
-                margin: 8px 0;
-                display: inline-block;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                box-sizing: border-box;
-            }
-            label {
-                font-size: 12px;
-                font-style: italic;
-                font-size: 10;
-            }
-            h2 {
-                margin-top: 1.3em;
-            }
-            button{
-                width: 100%;
-                color: white;
-                padding: 14px 20px;
-                margin: 8px 0;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-            }
-            button[id = "submit_song"]{
-                background-color: #4267B2;
-            }
-            button[id = "clear_screen"] {
-                background-color: #ff6961;
-            }
-
-            /* Add a background color to the submit button on mouse-over */
-            input[type=submit]:hover {
-                background-color: #45a049;
-            }
-            a {
-                color: #0083e8;
-            }
-
-            b, strong {
-                font-weight: 600;
-            }
-
-            samp {
-                display: none;
-            }
-
-            @keyframes colorize {
-                0% {
-                    -webkit-filter: grayscale(100%);
-                    filter: grayscale(100%);
-                }
-                100% {
-                    -webkit-filter: grayscale(0%);
-                    filter: grayscale(0%);
-                }
-            }
-        </style>
+        <link rel="stylesheet" href="style.css">
     </head>
 
     <body>
-        <h2>Gita Yaung Sone</h2>
-        <form>
-            <label for="title">Song Title</label>
-            <input type="text" id="title" name="title" placeholder="song title">
+        <h2>Gita Yaung Sone | Admin</h2>
+        <br><br>
 
-            <label for="artist">Artist / Singer</label>
-            <input type="text" id="artist" name="artist" placeholder="singer/band name">
+        <form>
+            <label for="title">Song title*</label>
+            <input type="text" id="title" name="title" placeholder="title of the song">
+
+            <label for="artist">Artist*</label>
+            <input type="text" id="artist" name="artist" placeholder="singer name or band name">
 
             <label for="album">Album</label>
-            <input type="text" id="album" name="album" placeholder="album">
+            <input type="text" id="album" name="album" placeholder="album name">
 
             <label for="composer">Composer</label>
-            <input type ="text" id="composer" name="composer" placeholder="composer">
+            <input type ="text" id="composer" name="composer" placeholder="name of the composer">
 
             <label for="genre">Genre</label>
-            <input type ="text" id="genre" name="genre" placeholder="genre" value="Other">
+            <select id="genre" name="genre">
+                <option value="Other">Other</option>
+                <option value="Pop">Pop</option>
+                <option value="Hip_Hop">Hip Hop</option>
+                <option value="Rock">Rock</option>
+                <option value="Rythm_and_blues">Rythm_and_blues</option>
+                <option value="Soul">Soul</option>
+                <option value="Reggae">Reggae</option>
+                <option value="Country">Country</option>
+                <option value="Funk">Funk</option>
+                <option value="Folk">Folk</option>
+                <option value="Middle_Eastern">Middle_Eastern</option>
+                <option value="Jazz">Jazz</option>
+                <option value="Disco">Disco</option>
+                <option value="Classical">Classical</option>
+                <option value="Electronic">Electronic</option>
+                <option value="Blues">Blues</option>
+                <option value="Latin_America">Latin_America</option>
+                <option value="Music_for_children">Music_for_children</option>
+                <option value="New_age">New_age</option>
+                <option value="Vocal">Vocal</option>
+                <option value="Africa">Africa</option>
+                <option value="Christian">Christian</option>
+                <option value="Asia">Asia</option>
+                '<option value="Ska">Ska</option>
+                <option value="Traditional">Traditional</option>
+                <option value="Independent">Independent</option>
 
-            <label for="key">Chose a Key</label>
+            </select>
+            <label for="tuning">Tuning*</label>
+            <select id="tuning" name="tuning">
+                <option value="Standard">EADGBE (Standard)</option>
+                <option value="Drop_D">Drop D</option>
+                <option value="Double_drop_D">Double drop D</option>
+                <option value="DADGAD">DADGAD</option>
+                <option value="Open_D">Open D</option>
+                <option value="Open_E">Open E</option>
+                <option value="Open_G">Open G</option>
+                <option value="Open_A">Open A</option>
+                <option value="DGC_GCD">DGC-GCD (The Rain Song tuning)</option>
+                <option value="Open_C6">Open C6</option>
+                <option value="Open_C">Open C (Chris Cornell tuning)</option>
+                <option value="EEEEBE">EEEEBEF</option>
+            </select>
+            <label for="key">Key*</label>
             <select id="key" name="key">
+                <option>Select</option>
                 <option value="A">A</option>
                 <option value="A#/Bb">A#/Bb</option>
                 <option value="B">B</option>
@@ -117,84 +83,82 @@
                 <option value="G">G</option>
                 <option value="G#/Ab">G#/Ab</option>
             </select>
+            <label for="timing">Timing*</label>
+            <select id="timing" name="timing">
+                <option>Select</option>
+                <option value="4_4">4/4</option>
+                <option value="2_4">2/4</option>
+                <option value="3_4">3/4</option>
+                <option value="2_2">2/2</option>
+                <option value="6_8">6/8</option>
+                <option value="9_8">9/8</option>
+                <option value="12_8">12/8</option>
+            </select>
 
-            <textarea id="rawText" name="rawText" placeholder="type chords and texts in .chopro format ..." style="height:500px"></textarea>
+            <textarea id="rawText" name="rawText" placeholder="Pls type in crdPro format (see the example below)" style="height:500px"></textarea>
 
             <button id="submit_song" type="button">Upload Song</button>
+            <button id="clear_screen" type="button">Reset</button>
         </form>
-        <button id="clear_screen" type="button">Reset</button>
+        <br><br>
+        <h3>Sample Formet</h3>
+        <small id="sample"># Intro<br>
+            [A] [Gbm] [D] [E] [A] [Gbm] [E]<br>
+            <br>
+            # Verse 1<br>
+            [A]တစ်ယောက်တည်း ခံစားနေရ အမေ့သားတွေ သမီးတွေ [Gbm]လက်တွေပြ<br>
+            [D]ပုခုံးပေါ်ထမ်းတင်ထားတဲ့ အမေ့စကားတွေ နားထဲ[E]ကြားနေရ<br>
+            [A]ဘယ်လိုပဲ အခက်အခဲတွေရှိပါစေ အကုန်ဖြတ်ကျော်သွားမယ့် [Gbm]စိတ်ကိုထား<br>
+            [D]တစ်ယောက်ချင်းအကုန်ဝိုင်းတွန်းကြရင် ပိတ်ထားတဲ့ တံခါး[E]များပွင့်မှာပါ<br>
+            [D]သစ်တစ်ပင်ကောင်းမှ [E]ငှက်တစ်သောင်းနားလို့ရ[A]မှာပါ<br>
+            <br>
+            # Verse 2<br>
+            [A]အမှန်တရားကို ရရင်ရ ပြန်မရရင် အဆုံးထိသွား[Gbm]မှာပါ<br>
+            [D]သံပုံးတွေရှေ့မှာချ တစ္ဆေတစ်ယောက်လို မောင်းထုတ်သွား[E]မှာပါ<br>
+            [A]အနိုင်ရရင် ကချင်ကမယ် အနိုင်မရရင်သွေးတွေ [Gbm]ရဲနေမှ<br>
+            [D]ပိတ်ထားတဲ့နားတွေက [E]အကုန်လုံးအော်ပြောမှ ကြား[A]မှာပါ<br>
+            <br>
+            # Chorus<br>
+            [A]အာဏာရှင်မောင်းထုတ်ကြမယ် အလိုမရှိ အလိုမရှိ<br>
+            ပြည်သူတွေ ကန့်ကွက်ကြမယ် [Gbm]အလိုမရှိ အလိုမရှိ<br>
+            [D]သံပုံးတွေ တို့အတူတီး အမှန်တရားအတွက် ရဲရင့်[E]ဖို့လိုပြီ<br>
+            [A]အာဏာရှင်မောင်းထုတ်ကြမယ် အလိုမရှိ အလိုမရှိ<br>
+            ပြည်သူတွေ ကန့်ကွက်ကြမယ် [Gbm]အလိုမရှိ အလိုမရှိ<br>
+            သံပုံးတွေ တို့အတူတီး အမှန်တရားအတွက် ရဲရင့်[E]ဖို့လိုပြီ<br>
+            [D]ဆန္ဒဖော်ထုတ်ကြမယ် [E]အမှန်တရားဘက်မှာ ငါတို့ ရပ်တည်[A]ပြီ/မည်<br>
+            [A] [Gbm] [D] [E] [A] [Gbm] [D] [E]<br>
+            ဟေ့ ဟေ့ ဟေ့ ဟေ့ ဟေ့ ဟေ့ ဟေ့ ဟေ့<br>
+            <br>
+            # Verse 2
+            <br>
+            # Chorus
+            <br>
+            <br>
+            [D]ဆန္ဒဖော်ထုတ်ကြမယ် [E]အမှန်တရားဘက်မှာ ငါတို့ ရပ်တည်[A]ပြီ/မည်<br>
+            [A]ဒီမိုကရေစီ ရရှိရေး ဒို့အရေး ဒို့အရေး ဒီမိုကရေစီ ရရှိရေး ဒို့အရေး ဒို့အရေး<br>
+            [A]သပိတ် သပိတ် မှောက်မှောက် သပိတ် သပိတ် မှောက်မှောက်<br>
+            [A]ရုံးမတက်နဲ့ ရုံးထွက် ရုံးမတက်နဲ့ ရုံးထွက်<br>
+            [A]အရေးတော်ပုံ အောင်ရမည် အရေးတော်ပုံ အောင်ရမည် အရေးတော်ပုံ အောင်ရမည် ... Fade<br>
+        </small>
+        <br><br>
+        <h3>Easy Chord Creater</h3>
+        <small>Download and install the chord creater desktop application for both <a href="https://tenbyten.com/software/songsgen/sg02setup.exe" download>Window</a> and <a href="https://tenbyten.com/software/songsgen/SG02.dmg" download>Mac</a></small>
+        <br><br><br>
+
+
     </body>
     <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-firestore.js"></script>
+    <script src="script.js"></script>
     <script type="text/javascript">
         (function() {
-            const firebaseConfig = {
-                apiKey: "AIzaSyDuGBoGn4Eb5V0nmJObTzznWNXld_y1_Ss",
-                authDomain: "main-373ae.firebaseapp.com",
-                projectId: "main-373ae",
-                storageBucket: "main-373ae.appspot.com",
-                messagingSenderId: "917088618177",
-                appId: "1:917088618177:web:1236ef9b99520c0f2b3640",
-                measurementId: "G-WSZZSJLX4F"
-            };
-
-            firebase.initializeApp(firebaseConfig);
+            
         })();
     </script>
 
     <script type="text/javascript">
         (function() {
-            let uuid = function() {
-                var dt = new Date().getTime();
-                var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-                    var r = (dt + Math.random()*16)%16 | 0;
-                    dt = Math.floor(dt/16);
-                    return (c=='x' ? r :(r&0x3|0x8)).toString(16);
-                });
-                return uuid;
-            }
-            let push_to_firebase = function(){
-                let data = {
-                    "title": document.getElementById("title").value,
-                    "artist": document.getElementById("artist").value,
-                    "artists": [document.getElementById("artist").value],
-                    "album": document.getElementById("album").value,
-                    "composer": document.getElementById("composer").value,
-                    "genre": document.getElementById("genre").value,
-                    "key": document.getElementById("key").value,
-                    "id": uuid(),
-                    "rawText": document.getElementById("rawText").value,
-                }
-
-                firebase.firestore().collection("songs").add({
-                    id: data["id"],
-                    title: data["title"],
-                    artist: data["artist"],
-                    artists:data["artists"],
-                    album: data["album"],
-                    composer: data["composer"],
-                    genre: data["genre"],
-                    key: data["key"],
-                    created: firebase.firestore.Timestamp.fromDate(new Date()),
-                    mediaLink: "",
-                    tempo: "",
-                    createrID: "admin",
-                    rawText: data["rawText"],
-                    popularity: 0,
-                }).then(function(docRef) {
-                    console.log("Message sent, ID: ", docRef.id);
-                    //                    location.reload();
-                    alert("Thanks for sending a message. I'll try and get back to you as soon as possible.")
-                }).catch(function(error) {
-                    console.error("Message could not be sent: ", error);
-                });
-            }
-
-            document.getElementById("submit_song").addEventListener("click", push_to_firebase);
-            let clearScreen = function() {
-                location.reload();
-            }
-            document.getElementById("clear_screen").addEventListener("click", clearScreen);
+            
         })();
 
     </script>
