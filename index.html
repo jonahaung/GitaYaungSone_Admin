@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--        <link rel="stylesheet" href="main.css">-->
+        <!--        <link rel="stylesheet" href="main.css">-->
         <style>
             html {
                 background: #e6e9e9;
@@ -16,7 +16,7 @@
                 color: #545454;
                 font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
                 font-size: 16px;
-                line-height: 1.5;
+                line-height: 1;
                 margin: 0 auto;
                 max-width: 800px;
                 padding: 2em 2em 4em;
@@ -32,12 +32,12 @@
                 box-sizing: border-box;
             }
             label {
-                font-size: 12px;
+
                 font-style: italic;
                 font-size: 10;
             }
             h2 {
-                margin-top: 1.3em;
+                /*                margin-top: 1.3em;*/
             }
             button{
                 width: 100%;
@@ -54,10 +54,18 @@
             button[id = "clear_screen"] {
                 background-color: #ff6961;
             }
-
+            small[id = "sample"] {
+                width: 100%;
+                padding: 12px 20px;
+                display: inline-block;
+                border: 1px solid #ccc;
+                box-sizing: border-box;
+                line-height: 1.5;
+                color: gray;
+            }
             /* Add a background color to the submit button on mouse-over */
-            input[type=submit]:hover {
-                background-color: #45a049;
+            button:hover {
+                font-weight: 600;
             }
             a {
                 color: #0083e8;
@@ -81,6 +89,7 @@
                     filter: grayscale(0%);
                 }
             }
+            
         </style>
     </head>
 
@@ -88,22 +97,23 @@
         <h2>Gita Yaung Sone</h2>
         <form>
             <label for="title">Song Title</label>
-            <input type="text" id="title" name="title" placeholder="song title">
+            <input type="text" id="title" name="title" placeholder="title of the song">
 
             <label for="artist">Artist / Singer</label>
-            <input type="text" id="artist" name="artist" placeholder="singer/band name">
+            <input type="text" id="artist" name="artist" placeholder="singer name or band name">
 
             <label for="album">Album</label>
-            <input type="text" id="album" name="album" placeholder="album">
+            <input type="text" id="album" name="album" placeholder="album name">
 
             <label for="composer">Composer</label>
-            <input type ="text" id="composer" name="composer" placeholder="composer">
+            <input type ="text" id="composer" name="composer" placeholder="the name of the composer">
 
             <label for="genre">Genre</label>
-            <input type ="text" id="genre" name="genre" placeholder="genre" value="Other">
+            <input type ="text" id="genre" name="genre" placeholder="song genre">
 
-            <label for="key">Chose a Key</label>
+            <label for="key">Key</label>
             <select id="key" name="key">
+                <option value="">----</option>
                 <option value="A">A</option>
                 <option value="A#/Bb">A#/Bb</option>
                 <option value="B">B</option>
@@ -118,11 +128,52 @@
                 <option value="G#/Ab">G#/Ab</option>
             </select>
 
-            <textarea id="rawText" name="rawText" placeholder="type chords and texts in .chopro format ..." style="height:500px"></textarea>
+            <textarea id="rawText" name="rawText" placeholder="Pls type in crdPro format .. (see the example below)" style="height:500px"></textarea>
 
             <button id="submit_song" type="button">Upload Song</button>
+            <button id="clear_screen" type="button">Reset</button>
         </form>
-        <button id="clear_screen" type="button">Reset</button>
+        
+        <hr>
+        
+        <h3>Sample Formet</h3>
+        <small id="sample">
+# Intro[A] [Gbm] [D] [E] [A] [Gbm] [E]<br>
+<br>
+# Verse 1<br>
+[A]တစ်ယောက်တည်း ခံစားနေရ အမေ့သားတွေ သမီးတွေ [Gbm]လက်တွေပြ<br>
+[D]ပုခုံးပေါ်ထမ်းတင်ထားတဲ့ အမေ့စကားတွေ နားထဲ[E]ကြားနေရ<br>
+[A]ဘယ်လိုပဲ အခက်အခဲတွေရှိပါစေ အကုန်ဖြတ်ကျော်သွားမယ့် [Gbm]စိတ်ကိုထား<br>
+[D]တစ်ယောက်ချင်းအကုန်ဝိုင်းတွန်းကြရင် ပိတ်ထားတဲ့ တံခါး[E]များပွင့်မှာပါ<br>
+[D]သစ်တစ်ပင်ကောင်းမှ [E]ငှက်တစ်သောင်းနားလို့ရ[A]မှာပါ<br>
+<br>
+# Verse 2<br>
+[A]အမှန်တရားကို ရရင်ရ ပြန်မရရင် အဆုံးထိသွား[Gbm]မှာပါ<br>
+[D]သံပုံးတွေရှေ့မှာချ တစ္ဆေတစ်ယောက်လို မောင်းထုတ်သွား[E]မှာပါ<br>
+[A]အနိုင်ရရင် ကချင်ကမယ် အနိုင်မရရင်သွေးတွေ [Gbm]ရဲနေမှ<br>
+[D]ပိတ်ထားတဲ့နားတွေက [E]အကုန်လုံးအော်ပြောမှ ကြား[A]မှာပါ<br>
+<br>
+# Chorus<br>
+[A]အာဏာရှင်မောင်းထုတ်ကြမယ် အလိုမရှိ အလိုမရှိ<br>
+ပြည်သူတွေ ကန့်ကွက်ကြမယ် [Gbm]အလိုမရှိ အလိုမရှိ<br>
+[D]သံပုံးတွေ တို့အတူတီး အမှန်တရားအတွက် ရဲရင့်[E]ဖို့လိုပြီ<br>
+[A]အာဏာရှင်မောင်းထုတ်ကြမယ် အလိုမရှိ အလိုမရှိ<br>
+ပြည်သူတွေ ကန့်ကွက်ကြမယ် [Gbm]အလိုမရှိ အလိုမရှိ<br>
+သံပုံးတွေ တို့အတူတီး အမှန်တရားအတွက် ရဲရင့်[E]ဖို့လိုပြီ<br>
+[D]ဆန္ဒဖော်ထုတ်ကြမယ် [E]အမှန်တရားဘက်မှာ ငါတို့ ရပ်တည်[A]ပြီ/မည်<br>
+[A] [Gbm] [D] [E] [A] [Gbm] [D] [E]<br>
+ဟေ့ ဟေ့ ဟေ့ ဟေ့ ဟေ့ ဟေ့ ဟေ့ ဟေ့<br>
+<br>
+# Verse 2
+<br>
+# Chorus
+<br>
+[D]ဆန္ဒဖော်ထုတ်ကြမယ် [E]အမှန်တရားဘက်မှာ ငါတို့ ရပ်တည်[A]ပြီ/မည်<br>
+[A]ဒီမိုကရေစီ ရရှိရေး ဒို့အရေး ဒို့အရေး ဒီမိုကရေစီ ရရှိရေး ဒို့အရေး ဒို့အရေး<br>
+[A]သပိတ် သပိတ် မှောက်မှောက် သပိတ် သပိတ် မှောက်မှောက်<br>
+[A]ရုံးမတက်နဲ့ ရုံးထွက် ရုံးမတက်နဲ့ ရုံးထွက်<br>
+[A]အရေးတော်ပုံ အောင်ရမည် အရေးတော်ပုံ အောင်ရမည် အရေးတော်ပုံ အောင်ရမည် ... Fade<br>
+        </small>
     </body>
     <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-firestore.js"></script>
@@ -154,10 +205,21 @@
                 return uuid;
             }
             let push_to_firebase = function(){
+                
+                let title = document.getElementById("title").value;
+                let artist = document.getElementById("artist").value;
+                let key = document.getElementById("key").value;
+                let rawText = document.getElementById("rawText").value;
+                
+                if (title === "" || artist === "" || key === "" || rawText === "") {
+                    alert("Incomplete Informations");
+                    return;
+                }
+                
                 let data = {
-                    "title": document.getElementById("title").value,
-                    "artist": document.getElementById("artist").value,
-                    "artists": [document.getElementById("artist").value],
+                    "title": title,
+                    "artist": artist,
+                    "artists": [artist],
                     "album": document.getElementById("album").value,
                     "composer": document.getElementById("composer").value,
                     "genre": document.getElementById("genre").value,
@@ -182,9 +244,8 @@
                     rawText: data["rawText"],
                     popularity: 0,
                 }).then(function(docRef) {
-                    console.log("Message sent, ID: ", docRef.id);
-                    //                    location.reload();
-                    alert("Thanks for sending a message. I'll try and get back to you as soon as possible.")
+                    location.reload();
+                    alert("Successfully uploaded")
                 }).catch(function(error) {
                     console.error("Message could not be sent: ", error);
                 });
